@@ -20,7 +20,7 @@ We have compiled a list of common tools and software that will come in handy to 
 
 - [Windows Subsystem for Linux](https://docs.microsoft.com/fr-fr/windows/wsl/install)
   - [HomeBrew for Linux](https://brew.sh/)
-  - Terraform binaire installed in the WSL Linux: 
+  - Terraform binary installed in the WSL Linux: 
 ```
 brew install terraform
 ```
@@ -31,14 +31,14 @@ brew install terraform
 
 ## Description
 
-Now that you have the common pre-requisites installed on your workstation, there are prerequisites specifc to this hack.
+Now that you have the common prerequisites installed on your workstation, there are prerequisites specifc to this hack.
 
 Please do these additional setup:
 
 ## Setup and create scripts files
 
-Those steps have to be done ONCE only (except if you destroy the Ressource Group hosting the TF State files).
-Your "terraform" process will need to store the tfstate file somewhere. In an Enterprise Scale Landing Zone, this should be hosted in a blob storage in a secured central place, generally in the Adminstration subscription. 
+Those steps have to be done ONCE only (except if you destroy the Resource Group hosting the TF State files).
+Your "terraform" process will need to store the tfstate file somewhere. In an Enterprise Scale Landing Zone, this should be hosted in a blob storage in a secured central place, generally in the Administration subscription. 
 ### Setup Azure TF backend:
 
 ```
@@ -107,17 +107,17 @@ tenant_id="AAD tenant id that host the SPN representing your terraform process"
 ## Terraform command
 
 ```
-## Terraform initialise backend
+## Terraform initialize backend
 terraform init -backend-config dev/beconf.tfvars -reconfigure
 ## terraform init with upgrade module version
 # terraform init -upgrade -backend-config dev/beconf.tfvars -reconfigure
 ## terraform check files
 # terraform fmt -check -recursive
-## terraform plan deploiement
+## terraform plan deployment
 terraform plan -var-file dev/connexion-var.tf
 ## terraform effective deploiement
 terraform apply -var-file dev/connexion-var.tf -auto-approve
-## terraform delete deploiement
+## terraform delete deployment
 ## WARNING: every AZURE resource will be deleted ....
 # terraform apply -var-file dev/connexion-var.tf -destroy -auto-approve
 ```
@@ -128,7 +128,7 @@ To complete this challenge successfully, you should be able to:
 - Verify that docker is running
 - Verify that you can initiate the TF file
 
-# Challenge 1 : [Setup d'une webapp (wordpress) + DB](./Challenge%201/Challenge1.md)
+# Challenge 1 : [Webapp setup wordpress) + DB](./Challenge%201/Challenge1.md)
 
 The objective of challenge 1 is to have a standard wordpress infrastructure.
 
@@ -138,7 +138,7 @@ The objective of challenge 1 is to have a standard wordpress infrastructure.
 - Run the terraform project
 
 ## :fire: Success Criteria
-- Verify that your web site is accessible throught internet
+- Verify that your website is accessible throught internet
 - Discover how tfstate works
 
 
@@ -155,11 +155,11 @@ The objective of the challenge is to have a zero trust identity approach on the 
 # :fire: Success Criteria
 - Verify tfstate information
 - Verify that the user does not have the rights to see the information in the keyvault
-- Verification of managed identity privileges
+- Verification of managed identity priviledges
 
 # Challenge 3 : [Secure network communication 1 - Internal (VNet Integration and Private Link)](./Challenge%203/Challenge3.md)
 
-Many customers want to have a zero trust network approach, so we will privatize the  database services in order not to expose the database
+Many customers want to have a zero trust network approach, so we will privatize the database services in order not to expose the database.
 
 ![Challenge 3](diagram/Challenge3.jpg)
 
@@ -175,18 +175,18 @@ Many customers want to have a zero trust network approach, so we will privatize 
 
 ## Challenge 4 : [Secure network communication 2 - Internet (Azure FrontDoor and Private Link)](./Challenge%204/Challenge4.md)
 
-Now that we have minimized the Internet Exposition, we need to secure it.
+Now that we have minimized the Internet exposure, we need to secure it.
 
-As we are working with a CMS site and may use CDN caching our choice is going to install Azure Front Door to protect the front end web site.
+As we are working with a CMS site and may use CDN caching our choice is going to install Azure Front Door to protect the website's frontend.
 
 ![Challenge 4](diagram/Challenge4.jpg)
 ## :star: During this Challenge
-- Install Azure Front Door,
+- Install Azure Front Door
 - Create a private link for the Web App Service hosting our application
 - Setup an Azure Front Door firewall rule
 
 ## :fire: Success Criteria
-- Verify that your web site is only accessible throught the Azure Front Door exposition.
+- Verify that your website is only accessible throught the Azure Front Door exposure.
 
 ## Challenge 5 : [Get aware of any suspect behaviour (Monitor and Defender for Cloud)](./Challenge%205/Challenge5.md)
 
@@ -194,11 +194,11 @@ Now that you have done a good job to secure the infrastructure of your app, it's
 ![Challenge 5](diagram/Challenge5.jpg)
 ## :star: During this Challenge
 - Setup a central Log Analytics Workspace
-- Configure resources to send theirs lors to this workspace,
-- Configure Defender for Cloud so attacks warning could be raised.
+- Configure resources to send their logs to this workspace
+- Configure Defender for Cloud so attack warnings can be raised
 
 # :fire: Success Criteria
-- Verify in your log analytics workspace that logs are in.
+- Verify in your Log Analytics Workspace that logs are in
 - Verify that in Azure Defender for Cloud, that your workloads are seen as covered
 
 ## Ressources:
